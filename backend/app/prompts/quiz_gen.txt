@@ -1,0 +1,18 @@
+Generate {count} MCQs on the topic "{subtopic}" under subject "{subject}" for NTRCA Bangladesh exam.
+
+Requirements:
+- Questions must match actual NTRCA exam style and difficulty
+- Each question must have exactly 4 answer options
+- Options should be plausible (wrong options are common misconceptions, not obviously wrong)
+- Explanations must be 2-3 sentences, citing the correct concept clearly
+- For number system questions, include the calculation steps in the explanation
+
+Return ONLY a valid JSON array. No markdown, no code fences. Format:
+[
+  {
+    "question": "question text here",
+    "options": ["option A", "option B", "option C", "option D"],
+    "correct_idx": 0,
+    "explanation": "explanation why option A is correct"
+  }
+]
