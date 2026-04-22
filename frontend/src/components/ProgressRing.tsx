@@ -5,30 +5,46 @@ interface Props {
 }
 
 export function ProgressRing({ subject, accuracy, total }: Props) {
-  const r = 36;
+  const r = 34;
   const circ = 2 * Math.PI * r;
   const fill = circ * Math.min(accuracy, 1);
-  const color = accuracy >= 0.6 ? "#10b981" : accuracy >= 0.4 ? "#f59e0b" : "#ef4444";
+  const color =
+    accuracy >= 0.6 ? "var(--green)" : accuracy >= 0.4 ? "var(--accent)" : "var(--red)";
+  const pct = Math.round(accuracy * 100);
 
   return (
-    <div style={{ textAlign: "center", width: 100 }}>
-      <svg width="90" height="90" viewBox="0 0 90 90">
-        <circle cx="45" cy="45" r={r} fill="none" stroke="#e5e7eb" strokeWidth="8" />
+    <div className="ring-card">
+      <svg width="88" height="88" viewBox="0 0 88 88">
         <circle
-          cx="45" cy="45" r={r}
+          cx="44" cy="44" r={r}
+          fill="none"
+          stroke="var(--bg-3)"
+          strokeWidth="6"
+        />
+        <circle
+          cx="44" cy="44" r={r}
           fill="none"
           stroke={color}
-          strokeWidth="8"
+          strokeWidth="6"
           strokeDasharray={`${fill} ${circ - fill}`}
           strokeLinecap="round"
-          transform="rotate(-90 45 45)"
+          transform="rotate(-90 44 44)"
+          style={{ transition: "stroke-dasharray 600ms cubic-bezier(0.4,0,0.2,1)" }}
         />
-        <text x="45" y="50" textAnchor="middle" fontSize="14" fontWeight="bold" fill={color}>
-          {Math.round(accuracy * 100)}%
+        <text
+          x="44" y="49"
+          textAnchor="middle"
+          fontSize="15"
+          fontWeight="500"
+          fontFamily="DM Mono"
+          fill={color}
+          letterSpacing="-0.02em"
+        >
+          {pct}%
         </text>
       </svg>
-      <p style={{ fontSize: 12, fontWeight: 600, marginTop: 4 }}>{subject}</p>
-      <p style={{ fontSize: 11, color: "#9ca3af" }}>{total} Q</p>
+      <div className="ring-label">{subject}</div>
+      <div className="ring-total">{total} Q</div>
     </div>
   );
 }
