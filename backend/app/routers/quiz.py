@@ -3,7 +3,12 @@ from sqlalchemy.orm import Session
 
 from app.config import config
 from app.database import get_db
-from app.schemas.quiz import AnswerRequest, AnswerResult, QuizSessionSchema, QuizStartRequest
+from app.schemas.quiz import (
+    AnswerRequest,
+    AnswerResult,
+    QuizSessionSchema,
+    QuizStartRequest,
+)
 from app.services.claude_service import ClaudeService
 from app.services.quiz_service import QuizService
 

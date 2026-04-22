@@ -9,7 +9,9 @@ from app.services.progress_service import ProgressService
 
 @pytest.fixture
 def db_with_data():
-    engine = create_engine("sqlite:///:memory:", connect_args={"check_same_thread": False})
+    engine = create_engine(
+        "sqlite:///:memory:", connect_args={"check_same_thread": False}
+    )
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     db = Session()
@@ -55,7 +57,9 @@ def test_get_stats_identifies_weak_areas(db_with_data):
 
 
 def test_get_stats_empty_db():
-    engine = create_engine("sqlite:///:memory:", connect_args={"check_same_thread": False})
+    engine = create_engine(
+        "sqlite:///:memory:", connect_args={"check_same_thread": False}
+    )
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     db = Session()

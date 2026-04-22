@@ -1,6 +1,6 @@
 import json
+from collections.abc import AsyncGenerator
 from pathlib import Path
-from typing import AsyncGenerator
 
 import anthropic
 

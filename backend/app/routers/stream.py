@@ -28,7 +28,9 @@ async def stream_explain(
 ):
     q = db.get(Question, question_id)
     claude = ClaudeService(config.anthropic_api_key)
-    return _sse(claude.stream_explanation(q.question_text, q.options, q.correct_idx, answer_idx))
+    return _sse(
+        claude.stream_explanation(q.question_text, q.options, q.correct_idx, answer_idx)
+    )
 
 
 @router.get("/chat")

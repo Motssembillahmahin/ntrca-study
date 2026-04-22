@@ -26,13 +26,17 @@ class Question(Base):
     __tablename__ = "questions"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    session_id: Mapped[int] = mapped_column(ForeignKey("quiz_sessions.id"), nullable=False)
+    session_id: Mapped[int] = mapped_column(
+        ForeignKey("quiz_sessions.id"), nullable=False
+    )
     question_text: Mapped[str] = mapped_column(Text, nullable=False)
     options_json: Mapped[str] = mapped_column(Text, nullable=False)
     correct_idx: Mapped[int] = mapped_column(Integer, nullable=False)
     explanation: Mapped[str] = mapped_column(Text, nullable=False)
 
-    session: Mapped["QuizSession"] = relationship("QuizSession", back_populates="questions")
+    session: Mapped["QuizSession"] = relationship(
+        "QuizSession", back_populates="questions"
+    )
     answer: Mapped["Answer | None"] = relationship(
         "Answer", back_populates="question", uselist=False
     )

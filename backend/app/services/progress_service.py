@@ -49,7 +49,8 @@ class ProgressService:
         weak_areas = [
             WeakArea(subject=t.subject, subtopic=t.subtopic, accuracy=t.accuracy)
             for t in topic_stats
-            if t.accuracy < WEAK_AREA_THRESHOLD and t.total >= MIN_QUESTIONS_FOR_WEAK_AREA
+            if t.accuracy < WEAK_AREA_THRESHOLD
+            and t.total >= MIN_QUESTIONS_FOR_WEAK_AREA
         ]
         weak_areas.sort(key=lambda w: w.accuracy)
 
